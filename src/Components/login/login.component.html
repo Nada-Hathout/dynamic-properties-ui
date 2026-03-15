@@ -11,28 +11,37 @@
       <p class="text-muted small">Enter your credentials to access the system</p>
     </div>
 
-    <form (ngSubmit)="login()">
+    <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+      
       <div class="mb-3">
         <label class="form-label-custom small fw-bold">Username</label>
-        <div class="input-group-modern">
+        <div class="input-group-modern" [class.border-danger]="submitted && !loginData.userName">
           <i class="bi bi-person input-icon"></i>
-          <input type="text" class="form-control-modern" 
-                 [(ngModel)]="loginData.userName" name="userName" 
-                 placeholder="Type your username" required>
+          <input type="text" 
+                 class="form-control-modern" 
+                 [(ngModel)]="loginData.userName" 
+                 name="userName" 
+                 required
+                 placeholder="Type your username">
         </div>
+        <small class="text-danger" *ngIf="submitted && !loginData.userName">Username is required</small>
       </div>
 
       <div class="mb-4">
         <label class="form-label-custom small fw-bold">Password</label>
-        <div class="input-group-modern">
+        <div class="input-group-modern" [class.border-danger]="submitted && !loginData.password">
           <i class="bi bi-lock input-icon"></i>
-          <input type="password" class="form-control-modern" 
-                 [(ngModel)]="loginData.password" name="password" 
-                 placeholder="••••••••" required>
+          <input type="password" 
+                 class="form-control-modern" 
+                 [(ngModel)]="loginData.password" 
+                 name="password" 
+                 required
+                 placeholder="••••••••">
         </div>
+        <small class="text-danger" *ngIf="submitted && !loginData.password">Password is required</small>
       </div>
 
-      <button class="btn btn-login w-100 mb-3 shadow">
+      <button type="submit" class="btn btn-login w-100 mb-3 shadow">
         Login Now <i class="bi bi-arrow-right-short ms-1"></i>
       </button>
 

@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-// توحيد الـ Property interface
 export interface Property {
   Name: string;
   Type: number;
@@ -29,10 +28,9 @@ export class PropertiesComponent {
 
   editProperty(p: Property) {
     this.isEditMode = true;
-    // this.newProperty = { ...p };
+
     this.newProperty = JSON.parse(JSON.stringify(p));
 
-  // التأكد من أن المصفوفة موجودة
   if (this.newProperty.Type === 4 && !this.newProperty.DropdownOptions) {
     this.newProperty.DropdownOptions = [];
   }
@@ -139,7 +137,6 @@ export class PropertiesComponent {
         error: err => console.error(err)
       });
     } else {
-      // حالة الإضافة الجديدة
       this.propertyService.add(payload).subscribe({
         next: () => {
           Swal.fire('Success', 'Property Added', 'success');
@@ -169,7 +166,7 @@ export class PropertiesComponent {
   }
 
   goBack() {
-    // افترضي أن مسار الداشبورد هو '/dashboard'
+
     this.router.navigate(['/dashboard']);
 
   }

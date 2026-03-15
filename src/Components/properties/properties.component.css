@@ -28,7 +28,6 @@
 .btn-edit-icon { color: #0984e3; background: #e1f5fe; border: none; width: 34px; height: 34px; border-radius: 8px; }
 .btn-delete-icon { color: #d63031; background: #ffeaea; border: none; width: 34px; height: 34px; border-radius: 8px; }
 
-/* المودال */
 .form-control-modern, .form-select-modern {
     width: 100%; padding: 10px; border-radius: 12px;
     border: 1.5px solid #eee; background: #fff;

@@ -1,4 +1,4 @@
-/* الخلفية بنفس درجات Login */
+
 .login-page-wrapper {
     background: linear-gradient(135deg, #f8faff 0%, #e0e7ff 100%);
     position: relative;
@@ -6,7 +6,7 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-/* دوائر الخلفية */
+
 .bg-circle {
     position: absolute;
     border-radius: 50%;
@@ -16,7 +16,7 @@
 .circle-1 { width: 350px; height: 350px; background: rgba(108, 92, 231, 0.15); top: -100px; right: -50px; }
 .circle-2 { width: 300px; height: 300px; background: rgba(162, 155, 254, 0.2); bottom: -50px; left: -50px; }
 
-/* كارت التسجيل الزجاجي */
+
 .login-card {
     width: 100%;
     max-width: 420px;
@@ -33,7 +33,6 @@
     border-radius: 20px; font-size: 1.8rem;
 }
 
-/* تنسيق الحقول */
 .input-group-modern {
     position: relative;
     display: flex; align-items: center;
@@ -52,7 +51,6 @@
     outline: none;
 }
 
-/* الزر البنفسجي الموحد */
 .btn-login {
     background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
     color: white; border: none; padding: 12px;

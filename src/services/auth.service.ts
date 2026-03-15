@@ -13,9 +13,9 @@ export class AuthService {
   login(data: any): Observable<any> {
     return this.http.post<any>(`${this.api}/login`, data).pipe(
       tap(res => {
-        // نفترض السيرفر بيرجع { token: "xxx" }
+  
         if (res && res.token) {
-          localStorage.setItem('token', res.token); // نخزن التوكن
+          localStorage.setItem('token', res.token);
         }
       })
     );
@@ -26,7 +26,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token'); // لمسح التوكن عند logout
+    localStorage.removeItem('token'); 
   }
 
   getToken(): string | null {
