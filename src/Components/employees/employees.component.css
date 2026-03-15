@@ -1,0 +1,153 @@
+/* الخلفية العامة للمشروع */
+:host {
+    display: block;
+    background-color: #f8faff; /* لون أزرق خفيف جداً مريح للعين */
+    min-height: 100vh;
+}
+
+/* عناوين مبهجة */
+.page-title {
+    color: #2d3436;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* زر الرجوع */
+.btn-back {
+    font-size: 1.5rem;
+    color: #6c5ce7;
+    padding: 0;
+    border: none;
+    background: transparent;
+    transition: transform 0.2s;
+}
+.btn-back:hover { transform: scale(1.1); color: #a29bfe; }
+
+/* زر الإضافة */
+.btn-add-new {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-add-new:hover {
+    box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
+    transform: translateY(-2px);
+    color: white;
+}
+
+/* الأفاتار (الدائرة بالاسم) */
+.avatar-circle {
+    width: 38px;
+    height: 38px;
+    background: #e0e7ff;
+    color: #4f46e5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* الجدول المودرن */
+.custom-table thead {
+    background-color: #fdfdfd;
+}
+.custom-table thead th {
+    padding: 16px;
+    border-bottom: 2px solid #f1f1f1;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.table-row {
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #f8f9fa;
+}
+.table-row:hover {
+    background-color: #fcfcff !important;
+}
+
+/* Badge الكود */
+.emp-code-badge {
+    background-color: #f1f2f6;
+    color: #2f3542;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+/* أزرار الأكشن */
+.btn-edit-icon {
+    color: #0984e3;
+    background: #e1f5fe;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.btn-edit-icon:hover { background: #0984e3; color: white; }
+
+.btn-delete-icon {
+    color: #d63031;
+    background: #ffeaea;
+    border: none;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.btn-delete-icon:hover { background: #d63031; color: white; }
+
+/* كارت الجلاس مورفيزم */
+.glass-card {
+    background: rgba(255, 255, 255, 1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* حاوية الجدول مع تحديد أقصى ارتفاع */
+.table-container {
+    max-height: 500px; /* تقدري تغيري الرقم ده حسب رغبتك */
+    overflow-y: auto;  /* سكرول رأسي */
+    overflow-x: auto;  /* سكرول أفقي لو الأعمدة كتير */
+    position: relative;
+}
+
+/* تثبيت رأس الجدول أثناء السكرول */
+.custom-table thead th {
+    position: sticky;
+    top: 0;
+    background-color: #fdfdfd; /* نفس لون الخلفية عشان ميشفش اللي تحته */
+    z-index: 10;
+    box-shadow: 0 2px 2px -1px rgba(0,0,0,0.1); /* خط خفيف تحت الهيدر */
+}
+
+/* اختياري: تخصيص شكل السكرول بار عشان يبقى مبهج وشيك */
+.table-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #a29bfe; /* لون مبهج متناسق مع الديزاين */
+    border-radius: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #6c5ce7;
+}
+
+/* لضمان ثبات أعمدة الأكشن (اختياري لو الجدول عريض جداً) */
+/* .sticky-action { position: sticky; right: 0; background: white; z-index: 5; } */

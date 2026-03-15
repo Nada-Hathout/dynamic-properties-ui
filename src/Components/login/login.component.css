@@ -1,0 +1,91 @@
+/* خلفية الصفحة بالكامل متناسقة مع الألوان السابقة */
+.login-page-wrapper {
+    background: linear-gradient(135deg, #f8faff 0%, #e0e7ff 100%);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* دوائر زينة في الخلفية */
+.bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+}
+.circle-1 { width: 300px; height: 300px; background: rgba(108, 92, 231, 0.2); top: -50px; left: -50px; }
+.circle-2 { width: 400px; height: 400px; background: rgba(162, 155, 254, 0.2); bottom: -100px; right: -50px; }
+
+/* كارت تسجيل الدخول */
+.login-card {
+    width: 100%;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* أيقونة القفل الفوقية */
+.login-icon-box {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 1.5rem;
+}
+
+/* تنسيق الـ Inputs بنفس روح المشروع */
+.input-group-modern {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-icon {
+    position: absolute;
+    left: 15px;
+    color: #a29bfe;
+}
+.form-control-modern {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border-radius: 15px;
+    border: 1.5px solid #eee;
+    transition: all 0.3s;
+}
+.form-control-modern:focus {
+    border-color: #6c5ce7;
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.1);
+    outline: none;
+}
+
+/* زر تسجيل الدخول */
+.btn-login {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(108, 92, 231, 0.3);
+    color: white;
+}
+
+/* رابط التسجيل */
+.register-link {
+    color: #6c5ce7;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.register-link:hover {
+    color: #5649c0;
+    text-decoration: underline;
+}

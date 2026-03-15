@@ -1,0 +1,46 @@
+<div class="login-page-wrapper vh-100 d-flex justify-content-center align-items-center">
+  <div class="bg-circle circle-1"></div>
+  <div class="bg-circle circle-2"></div>
+
+  <div class="login-card glass-card shadow-2xl p-5 border-0 rounded-5">
+    <div class="text-center mb-4">
+      <div class="login-icon-box shadow-sm mb-3" style="background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);">
+        <i class="bi bi-person-plus-fill"></i>
+      </div>
+      <h2 class="fw-bold text-dark mb-1">Create Account</h2>
+      <p class="text-muted small">Join our system and start managing today</p>
+    </div>
+
+    <form (ngSubmit)="register()">
+      <div class="mb-3">
+        <label class="form-label-custom small fw-bold text-muted">Username</label>
+        <div class="input-group-modern">
+          <i class="bi bi-person-badge input-icon"></i>
+          <input type="text" class="form-control-modern" 
+                 [(ngModel)]="registerData.userName" name="userName" 
+                 placeholder="Choose a unique username" required>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label-custom small fw-bold text-muted">Password</label>
+        <div class="input-group-modern">
+          <i class="bi bi-key input-icon"></i>
+          <input type="password" class="form-control-modern" 
+                 [(ngModel)]="registerData.password" name="password" 
+                 placeholder="Create a strong password" required>
+        </div>
+      </div>
+
+      <button class="btn btn-login w-100 mb-3 shadow">
+        Create My Account <i class="bi bi-check-circle-fill ms-1"></i>
+      </button>
+
+      <div class="text-center mt-2">
+        <p class="small text-muted mb-0">Already have an account? 
+          <a routerLink="/login" class="register-link fw-bold">Sign In</a>
+        </p>
+      </div>
+    </form>
+  </div>
+</div>

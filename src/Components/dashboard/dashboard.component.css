@@ -1,0 +1,36 @@
+:host {
+    display: block;
+    background-color: #e6e8ec; /* لون أزرق خفيف جداً مريح للعين */
+    min-height: 120vh;
+    top:0px;
+}
+
+.card-animate {
+  border-radius: 12px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card-animate:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* Bright colors */
+.card-blue { background: #6EC1E4; color: white; }
+.card-green { background: #7ED957; color: white; }
+.card-purple { background: #A36DEA; color: white; }
+.card-orange { background: #FFA64D; color: white; }
+.card-pink { background: #FF7AA1; color: white; }
+.card-teal { background: #1ABC9C; color: white; }
+.card-yellow { background: #F7DC6F; color: white; }
+.card-red { background: #E74C3C; color: white; }
+.card-gray { background: #95A5A6; color: white; }
+
+.card button {
+  transition: transform 0.2s;
+}
+
+.card button:hover {
+  transform: scale(1.1);
+}

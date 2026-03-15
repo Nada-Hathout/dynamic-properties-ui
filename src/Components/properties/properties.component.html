@@ -1,0 +1,117 @@
+<div class="main-wrapper p-4">
+  <div class="dashboard-header d-flex justify-content-between align-items-center mb-4 p-3 shadow-sm rounded-4 bg-white">
+    <div class="d-flex align-items-center">
+      <button class="btn btn-back me-3" (click)="goBack()">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+      </button>
+      <div>
+        <h2 class="page-title mb-0 text-dark fw-bold">Manage Properties</h2>
+        <p class="text-muted small mb-0">Control the dynamic fields of your organization</p>
+      </div>
+    </div>
+    <button class="btn btn-add-new shadow" data-bs-toggle="modal" data-bs-target="#propertyModal" (click)="resetForm()">
+      <i class="bi bi-plus-square-fill me-2"></i> Add New Property
+    </button>
+  </div>
+
+  <div class="glass-card shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="table-container">
+      <table class="table table-hover custom-table align-middle mb-0">
+        <thead>
+          <tr>
+            <th class="ps-4">Property Name</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Configured Options</th>
+            <th class="text-center pe-4">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of properties" class="table-row">
+            <td class="ps-4">
+              <div class="d-flex align-items-center">
+                <div class="avatar-circle me-3">
+                   <i class="bi" [ngClass]="{'bi-type': p.Type === 1, 'bi-123': p.Type === 2, 'bi-calendar3': p.Type === 3, 'bi-list-ul': p.Type === 4}"></i>
+                </div>
+                <span class="fw-semibold text-dark">{{p.Name}}</span>
+              </div>
+            </td>
+            <td><span class="emp-code-badge">{{types[p.Type-1]?.name}}</span></td>
+            <td>
+              <span class="badge" [ngClass]="p.IsRequired ? 'bg-warning text-dark' : 'bg-light text-muted'">
+                {{ p.IsRequired ? 'Required' : 'Optional' }}
+              </span>
+            </td>
+            <td>
+              <div *ngIf="p.Type === 4" class="d-flex flex-wrap gap-1">
+                <span *ngFor="let opt of p.DropdownOptions" class="badge bg-info text-dark" style="font-size: 0.7rem;">{{opt}}</span>
+              </div>
+              <span *ngIf="p.Type !== 4" class="text-muted small">---</span>
+            </td>
+            <td class="text-center pe-4">
+              <div class="action-buttons">
+                <button class="btn btn-edit-icon me-2" data-bs-toggle="modal" data-bs-target="#propertyModal" (click)="editProperty(p)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-delete-icon" (click)="deleteProperty(p.id!)">
+                  <i class="bi bi-trash3-fill"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="propertyModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-5 overflow-hidden">
+      <div class="modal-header-modern p-4 text-white" style="background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);">
+        <h5 class="mb-0 fw-bold">
+          <i class="bi bi-gear-fill me-2"></i>
+          {{ isEditMode ? 'Update Property' : 'New Property' }}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      
+      <div class="modal-body p-4 bg-light">
+        <div class="mb-3">
+          <label class="form-label-custom fw-bold small">Property Name</label>
+          <input class="form-control-modern" [(ngModel)]="newProperty.Name" placeholder="e.g. Phone Number">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label-custom fw-bold small">Type</label>
+          <select class="form-select-modern" [(ngModel)]="newProperty.Type">
+            <option *ngFor="let t of types" [value]="t.value">{{t.name}}</option>
+          </select>
+        </div>
+
+        <div class="mb-3 form-check form-switch mt-4">
+          <input type="checkbox" class="form-check-input" id="isRequired" [(ngModel)]="newProperty.IsRequired">
+          <label class="form-check-label fw-bold text-secondary" for="isRequired">Mandatory Field</label>
+        </div>
+
+        <div *ngIf="+newProperty.Type === 4" class="p-3 rounded-4 bg-white border border-light shadow-sm">
+          <label class="fw-bold small mb-2 d-block">Options List</label>
+          <div class="input-group mb-2">
+            <input class="form-control-modern border-end-0 rounded-end-0" style="flex: 1" [(ngModel)]="dropdownValue" (keyup.enter)="addDropdownValue()" placeholder="Value">
+            <button class="btn btn-primary rounded-start-0 rounded-end-3" (click)="addDropdownValue()">Add</button>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <span *ngFor="let v of newProperty.DropdownOptions; let i=index" class="badge bg-primary d-flex align-items-center p-2">
+              {{v}} <i class="bi bi-x-circle ms-2 cursor-pointer" (click)="removeDropdownValue(i)"></i>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer p-4 border-0">
+        <button class="btn btn-cancel me-2" data-bs-dismiss="modal">Discard</button>
+        <button class="btn btn-save" (click)="saveProperty()" style="background: #6c5ce7; color: white;">Confirm</button>
+      </div>
+    </div>
+  </div>
+</div>

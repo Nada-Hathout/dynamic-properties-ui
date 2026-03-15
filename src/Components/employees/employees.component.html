@@ -1,0 +1,76 @@
+<div class="main-wrapper p-4">
+  <div class="dashboard-header d-flex justify-content-between align-items-center mb-4 p-3 shadow-sm rounded-4 bg-white">
+    <div class="d-flex align-items-center">
+      <button class="btn btn-back me-3" (click)="goBack()">
+        <i class="bi bi-arrow-left-circle-fill"></i>
+      </button>
+      <div>
+        <h2 class="page-title mb-0">Employee Directory</h2>
+        <p class="text-muted small mb-0">Manage your team and their custom properties</p>
+      </div>
+    </div>
+    <button class="btn btn-add-new shadow" (click)="openForm()">
+      <i class="bi bi-person-plus-fill me-2"></i> Add New Employee
+    </button>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="stat-card shadow-sm p-3 border-start border-primary border-4 rounded-3 bg-white text-center">
+        <span class="text-muted d-block small">Total Employees</span>
+        <h4 class="fw-bold mb-0 text-primary">{{ employees.length }}</h4>
+      </div>
+    </div>
+  </div>
+<div class="glass-card shadow-lg rounded-4 overflow-hidden">
+  <div class="table-container">
+  <table class="table table-hover custom-table align-middle mb-0">
+      <thead>
+        <tr>
+          <th class="ps-4 sticky-col">Profile Info</th>
+          <th>Employee Code</th>
+          <th *ngFor="let sysProp of allSystemProperties" class="text-muted fw-normal">
+            {{ sysProp.name }}
+          </th>
+          <th class="text-center pe-4 sticky-action">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let emp of employees" class="table-row">
+          <td class="ps-4 sticky-col">
+            <div class="d-flex align-items-center">
+              <div class="avatar-circle me-3">{{ emp.name.charAt(0).toUpperCase() }}</div>
+              <span class="fw-semibold text-dark">{{ emp.name }}</span>
+            </div>
+          </td>
+          <td>
+            <span class="emp-code-badge">{{ emp.code }}</span>
+          </td>
+          
+          <td *ngFor="let sysProp of allSystemProperties">
+            <span class="prop-value text-secondary">{{ getPropertyValue(emp, sysProp.name) }}</span>
+          </td>
+
+          <td class="text-center pe-4 sticky-action">
+            <div class="action-buttons">
+              <button class="btn btn-edit-icon me-2" (click)="openForm(emp)" title="Edit">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+              <button class="btn btn-delete-icon" (click)="deleteEmployee(emp.id)" title="Delete">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <app-add-employee 
+    *ngIf="showForm" 
+    [employee]="selectedEmployee" 
+    (saved)="handleSave()" 
+    (canceled)="showForm = false">
+  </app-add-employee>
+</div>

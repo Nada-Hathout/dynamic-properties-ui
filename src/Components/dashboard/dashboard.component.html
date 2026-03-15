@@ -1,0 +1,74 @@
+<!-- <div class="container mt-5">
+
+<h2 class="mb-4">Admin Dashboard</h2>
+
+<div class="row">
+
+<div class="col-md-4">
+<div class="card shadow text-center p-4">
+<h4>Employees</h4>
+<button class="btn btn-primary mt-2">
+Manage
+</button>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow text-center p-4">
+<h4>Custom Properties</h4>
+<button class="btn btn-success mt-2">
+Manage
+</button>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card shadow text-center p-4">
+<h4>Logout</h4>
+<button class="btn btn-danger mt-2">
+Logout
+</button>
+</div>
+</div>
+
+</div>
+
+</div>
+ --><div class="container mt-4">
+
+  <!-- Logout Button -->
+  <div class="text-end mb-3">
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+
+  <h2 class="mb-4 text-center">Admin Dashboard</h2>
+
+  <div class="row g-4">
+    <!-- Employees Card -->
+    <div class="col-md-4">
+      <div class="card shadow text-center p-4 card-animate card-blue">
+        <h4>Employees</h4>
+        <button class="btn btn-light mt-2" (click)="manageEmployee()">Manage</button>
+      </div>
+    </div>
+
+    <!-- Properties Card -->
+    <div class="col-md-4">
+      <div class="card shadow text-center p-4 card-animate card-green">
+        <h4>Custom Properties</h4>
+        <button class="btn btn-light mt-2" (click)="manageProperties()">Manage</button>
+      </div>
+    </div>
+
+    <!-- Extra Cards -->
+    <div class="col-md-4" *ngFor="let card of extraCards">
+      <div class="card shadow text-center p-4 card-animate" [ngClass]="card.color">
+        <h4>{{card.title}}</h4>
+        <button class="btn btn-light mt-2" (click)="card.action()">
+          Manage
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="modal-overlay d-flex align-items-center justify-content-center">
+  <div class="modal-dialog modal-lg custom-modal-animate">
+    <div class="modal-content border-0 shadow-2xl rounded-5 overflow-hidden">
+      
+      <div class="modal-header-modern p-4 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold text-white">
+          <i class="bi" [ngClass]="selectedEmployee.id ? 'bi-pencil-square' : 'bi-person-plus-fill'"></i>
+          {{selectedEmployee.id ? 'Refine Employee Details' : 'Register New Employee'}}
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="canceled.emit()"></button>
+      </div>
+
+      <div class="modal-body p-4 ">
+        <div class="section-badge mb-3">Basic Information</div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label-custom">Employee Name <span class="text-danger">*</span></label>
+            <div class="input-group-modern" [class.is-invalid-border]="submitted && !selectedEmployee.name">
+              <i class="bi bi-person input-icon"></i>
+              <input type="text" class="form-control-modern" [(ngModel)]="selectedEmployee.name" placeholder="John Doe" required>
+            </div>
+            <small class="text-danger mt-1 d-block" *ngIf="submitted && !selectedEmployee.name">Name is required!</small>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label-custom">Employee Code <span class="text-danger">*</span></label>
+            <div class="input-group-modern" [class.is-invalid-border]="submitted && !selectedEmployee.code">
+              <i class="bi bi-hash input-icon"></i>
+              <input type="text" class="form-control-modern" [(ngModel)]="selectedEmployee.code" placeholder="EMP-000" required>
+            </div>
+            <small class="text-danger mt-1 d-block" *ngIf="submitted && !selectedEmployee.code">Code is required!</small>
+          </div>
+        </div>
+
+        <hr class="my-4 border-light">
+
+        <div class="section-badge mb-3 secondary">Additional Properties</div>
+        <div class="row g-3 overflow-y-auto" style="max-height: 40vh;">
+          <div *ngFor="let prop of selectedEmployee.values; let i = index" class="col-md-6">
+            <label class="form-label-custom">
+              {{prop.propertyName}} 
+              <span *ngIf="prop.isRequired" class="text-danger">*</span>
+            </label>
+            
+            <div [ngSwitch]="prop.type" class="input-group-modern" [class.is-invalid-border]="submitted && prop.isRequired && !prop.value">
+              <i class="bi input-icon" 
+                 [ngClass]="{'bi-chat-left-text': prop.type === 1, 'bi-123': prop.type === 2, 'bi-calendar-event': prop.type === 3, 'bi-list-ul': prop.type === 4}">
+              </i>
+
+              <input *ngSwitchCase="1" type="text" class="form-control-modern" 
+                     [(ngModel)]="selectedEmployee.values[i].value" [name]="'txt' + i">
+
+              <input *ngSwitchCase="2" type="number" class="form-control-modern" 
+                     [(ngModel)]="selectedEmployee.values[i].value" [name]="'num' + i">
+
+              <input *ngSwitchCase="3" type="date" class="form-control-modern" 
+                     [(ngModel)]="selectedEmployee.values[i].value" [name]="'date' + i">
+
+              <select *ngSwitchCase="4" class="form-select-modern" 
+                      [(ngModel)]="selectedEmployee.values[i].value" [name]="'sel' + i">
+                <option value="">Choose...</option>
+                <option *ngFor="let opt of prop.dropdownOptions" [value]="opt">{{opt}}</option>
+              </select>
+            </div>
+            <small class="text-danger mt-1 d-block" *ngIf="submitted && prop.isRequired && !prop.value">
+              {{prop.propertyName}} is required!
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-modern p-4 bg-white d-flex justify-content-end gap-2">
+        <button class="btn btn-cancel shadow" (click)="canceled.emit()">
+          Discard
+        </button>
+        <button class="btn btn-save shadow" (click)="saveEmployee()">
+          {{selectedEmployee.id ? 'Update Record' : 'Create Employee'}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
